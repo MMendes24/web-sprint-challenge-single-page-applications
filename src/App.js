@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Link, Route } from 'react-router-dom'
+import * as yup from 'yup'
+import formSchema from './validation/formSchema'
 import axios from 'axios'
 import Pizza from './components/Pizza'
 import Home from './components/Home.js'
@@ -18,19 +20,24 @@ const initialFormValues = {
   instructions: '',
 }
 
+const initialFormErrors = {
+  username: '',
+
+}
+
 const initialPizzas = []
 
 const App = () => {
   // state
 const [pizzas, setPizzas] = useState(initialPizzas)
 const [formValues, setFormValues] = useState(initialFormValues)
+const [formErrors, setFormErrors] = useState(initialFormErrors)
 
 // axios calls
 const postNewPizza = newPizza => {
   axios.post('https://reqres.in/', newPizza)
   .then(res => {
     setPizzas([res.data, ...pizzas])
-    console.log('hello')
     setFormValues(initialFormValues)
   })
   .catch(err => {
@@ -40,9 +47,26 @@ const postNewPizza = newPizza => {
 
 // form functionality
 
-const inputChange = (inputName, inputValue) => {
-  const updatedFormValues = {...formValues, [inputName]: inputValue}
-  setFormValues(updatedFormValues)
+const inputChange = (name, value) => {
+  yup
+  .reach(formSchema, name)
+  .validate(value)
+  .then(valid => {
+    setFormErrors({
+      ...formErrors,
+      [name]: ""
+    })
+  })
+  .catch(err => {
+    setFormErrors({
+      ...formErrors,
+      [name]: err.errors[0]
+    })
+  })
+  setFormValues({
+    ...formValues,
+    [name]: value 
+  })
 }
 
 const checkboxChange = (name, isChecked) => {
@@ -65,6 +89,8 @@ const checkboxChange = (name, isChecked) => {
     postNewPizza(newPizza)
   }
 
+  //side effects
+
   return (
     <div className="app-container">
       <h1>Lambda Eats</h1>
@@ -79,6 +105,7 @@ const checkboxChange = (name, isChecked) => {
           inputChange={inputChange}
           checkboxChange={checkboxChange}
           submit={submit}
+          errors={formErrors}
           />
         </Route>
 

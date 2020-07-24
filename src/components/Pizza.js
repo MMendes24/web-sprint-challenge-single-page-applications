@@ -5,6 +5,7 @@ export default function Pizza(props) {
             submit, 
             inputChange, 
             checkboxChange, 
+            errors,
          } = props
 
       const onSubmit = e => {
@@ -24,6 +25,9 @@ export default function Pizza(props) {
 
     return (
         <form>
+          <div className='errors'>
+            <p id="para-one">{errors.username}</p>
+        </div>
             <div className='form-container' onSubmit={onSubmit}>
         <h2>Build your own pizza!</h2>
         <label>Name:&nbsp;
