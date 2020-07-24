@@ -12,6 +12,14 @@ describe('check the inputs', () => {
           .type('John Adams')
           .should('have.value','John Adams')
       })
+
+    it('can click on pepperoni', () => {
+        cy.get('input[name="pepperoni"]').click()
+    })
+
+    it('can click on black olives', () => {
+        cy.get('input[name="blackOlives"]').click()
+    })
 })
 
 describe('check submission', () => {

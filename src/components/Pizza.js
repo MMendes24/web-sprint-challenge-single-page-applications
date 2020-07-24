@@ -24,11 +24,11 @@ export default function Pizza(props) {
       }
 
     return (
-        <form>
+        <form onSubmit={onSubmit}> 
           <div className='errors'>
             <p id="para-one">{errors.username}</p>
         </div>
-            <div className='form-container' onSubmit={onSubmit}>
+            <div className='form-container'>
         <h2>Build your own pizza!</h2>
         <label>Name:&nbsp;
             <input 

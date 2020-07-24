@@ -35,7 +35,7 @@ const [formErrors, setFormErrors] = useState(initialFormErrors)
 
 // axios calls
 const postNewPizza = newPizza => {
-  axios.post('https://reqres.in/', newPizza)
+  axios.post('https://reqres.in/api/users', newPizza)
   .then(res => {
     setPizzas([res.data, ...pizzas])
     setFormValues(initialFormValues)
@@ -89,6 +89,7 @@ const checkboxChange = (name, isChecked) => {
     postNewPizza(newPizza)
   }
 
+  console.log(pizzas)
   //side effects
 
   return (
@@ -115,7 +116,6 @@ const checkboxChange = (name, isChecked) => {
       </Switch>
       </div>
   );
-
 };
 
 export default App;
