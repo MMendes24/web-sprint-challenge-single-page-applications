@@ -21,6 +21,39 @@ export default function Pizza(props) {
             <option value='x-large'>X-Large</option>
         </select>
         </label>
+            <h3>Toppings</h3>
+            <label>Pepperoni&nbsp;
+          <input
+            type="checkbox"
+            name='pepperoni'
+          />
+        </label>
+        <label>Jalapenos&nbsp;
+          <input
+            type="checkbox"
+            name='jalapenos'
+          />
+        </label>
+        <label>Black Olives&nbsp;
+          <input
+            type="checkbox"
+            name='blackOlives'
+          />
+        </label>
+        <label>Bacon&nbsp;
+          <input
+            type="checkbox"
+            name='bacon'
+          />
+        </label>
+        <label>Special Instructions?&nbsp;
+        <input 
+            placeholder='Do you have any additional requests?'
+            name='instructions'
+            type='text'
+            />
+        </label>
+        <button>Add</button>
         </div>
     </form>
     )
