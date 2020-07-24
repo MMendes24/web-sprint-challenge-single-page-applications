@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Link, Route } from 'react-router-dom'
-import PizzaForm from './components/PizzaForm'
+import Pizza from './components/PizzaForm'
 import Home from './components/Home.js'
 
 
@@ -13,8 +13,8 @@ const App = () => {
       <Link to ='/pizza'>Pizza?</Link>
 
       <Switch>
-        <Route path='/pizza/'>
-          <PizzaForm />
+        <Route path='/pizza'>
+          <Pizza />
         </Route>
 
         <Route path='/'>
